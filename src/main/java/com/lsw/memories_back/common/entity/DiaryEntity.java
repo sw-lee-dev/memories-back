@@ -3,6 +3,7 @@ package com.lsw.memories_back.common.entity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import com.lsw.memories_back.common.dto.request.diary.PatchDiaryRequestDto;
 import com.lsw.memories_back.common.dto.request.diary.PostDiaryRequestDto;
 
 import jakarta.persistence.Column;
@@ -40,6 +41,13 @@ public class DiaryEntity {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     this.userId = userId;
     this.writeDate = now.format(dateTimeFormatter);
+    this.weather = dto.getWeather();
+    this.feeling = dto.getFeeling();
+    this.title = dto.getTitle();
+    this.content = dto.getContent();
+  }
+
+  public void patch(PatchDiaryRequestDto dto) {
     this.weather = dto.getWeather();
     this.feeling = dto.getFeeling();
     this.title = dto.getTitle();
