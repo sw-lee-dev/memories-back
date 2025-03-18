@@ -2,6 +2,8 @@ package com.lsw.memories_back.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lsw.memories_back.common.dto.request.diary.PostDiaryRequestDto;
 import com.lsw.memories_back.common.dto.response.ResponseDto;
+import com.lsw.memories_back.common.dto.response.diary.GetDiaryResponseDto;
+import com.lsw.memories_back.common.dto.response.diary.GetMyDiaryResponseDto;
 import com.lsw.memories_back.service.DiaryService;
 
 import jakarta.validation.Valid;
@@ -27,6 +31,22 @@ public class DiaryController {
     @AuthenticationPrincipal String userId /*토큰에 있는 정보 가져오기*/
   ) {
     ResponseEntity<ResponseDto> response = diaryService.postDiary(requestBody, userId);
+    return response;
+  }
+
+  @GetMapping("/my")
+  public ResponseEntity<? super GetMyDiaryResponseDto> getMyDiary(
+    @AuthenticationPrincipal String userId
+  ) {
+    ResponseEntity<? super GetMyDiaryResponseDto> response = diaryService.getMyDiary(userId);
+    return response;
+  }
+
+  @GetMapping("/{diaryNumber}")
+  public ResponseEntity<? super GetDiaryResponseDto> getDiary(
+    @PathVariable("diaryNumber") Integer diaryNumber
+  ) {
+    ResponseEntity<? super GetDiaryResponseDto> response = diaryService.getDiary(diaryNumber);
     return response;
   }
 
