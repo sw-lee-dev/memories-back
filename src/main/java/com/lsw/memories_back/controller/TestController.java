@@ -13,6 +13,7 @@ import com.lsw.memories_back.common.dto.request.test.PostMemoryRequestDto;
 import com.lsw.memories_back.common.dto.response.ResponseDto;
 import com.lsw.memories_back.common.dto.response.test.GetConcentrationResponseDto;
 import com.lsw.memories_back.common.dto.response.test.GetMemoryResponseDto;
+import com.lsw.memories_back.common.dto.response.test.GetRecentlyMemoryResponseDto;
 import com.lsw.memories_back.service.TestService;
 
 import jakarta.validation.Valid;
@@ -56,6 +57,14 @@ public class TestController {
     @AuthenticationPrincipal String userId
   ) {
     ResponseEntity<? super GetConcentrationResponseDto> response = testService.getConcentration(userId);
+    return response;
+  }
+
+  @GetMapping("/memory/recently")
+  public ResponseEntity<? super GetRecentlyMemoryResponseDto> getRecentlyMemory(
+    @AuthenticationPrincipal String userId
+  ) {
+    ResponseEntity<? super GetRecentlyMemoryResponseDto> response = testService.getRecentlyMemory(userId);
     return response;
   }
 
