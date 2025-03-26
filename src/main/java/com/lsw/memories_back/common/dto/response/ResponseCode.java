@@ -11,4 +11,5 @@ public interface ResponseCode {
   String NO_PERMISSION = "NP";
 
   String DATABASE_ERROR = "DBE";
+  String OPEN_AI_ERROR = "OAE";
 }
