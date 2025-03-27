@@ -6,6 +6,7 @@ import com.lsw.memories_back.common.dto.request.diary.PatchDiaryRequestDto;
 import com.lsw.memories_back.common.dto.request.diary.PostDiaryRequestDto;
 import com.lsw.memories_back.common.dto.request.diary.PostCommentRequestDto;
 import com.lsw.memories_back.common.dto.response.ResponseDto;
+import com.lsw.memories_back.common.dto.response.diary.GetCommentResponseDto;
 import com.lsw.memories_back.common.dto.response.diary.GetDiaryResponseDto;
 import com.lsw.memories_back.common.dto.response.diary.GetEmpathyResponseDto;
 import com.lsw.memories_back.common.dto.response.diary.GetMyDiaryResponseDto;
@@ -20,5 +21,6 @@ public interface DiaryService {
   ResponseEntity<? super GetEmpathyResponseDto> getEmpathy(Integer diaryNumber);
   ResponseEntity<ResponseDto> putEmpathy(Integer diaryNumber, String userId);
 
+  ResponseEntity<? super GetCommentResponseDto> getComment(Integer diaryNumber);
   ResponseEntity<ResponseDto> postComment(PostCommentRequestDto dto, Integer diaryNumber, String userId);
 }

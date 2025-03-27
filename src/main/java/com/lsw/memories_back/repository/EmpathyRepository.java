@@ -8,10 +8,15 @@ import org.springframework.stereotype.Repository;
 import com.lsw.memories_back.common.entity.EmpathyEntity;
 import com.lsw.memories_back.common.entity.pk.EmpathyPK;
 
+import jakarta.transaction.Transactional;
+
 @Repository
 public interface EmpathyRepository extends JpaRepository<EmpathyEntity, EmpathyPK> {
   
   EmpathyEntity findByUserIdAndDiaryNumber(String userId, Integer diaryNumber);
   List<EmpathyEntity> findByDiaryNumber(Integer diaryNumber);
+
+  @Transactional
+  void deleteByDiaryNumber(Integer diaryNumber);
 
 }
