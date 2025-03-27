@@ -37,6 +37,6 @@ public class CommentEntity {
     this.userId = userId;
     this.diaryNumber = diaryNumber;
     this.writeDate = now.format(dateTimeFormatter);
-    this.content = dto.getContent();
+    this.content = dto.getComment();
   }
 }
