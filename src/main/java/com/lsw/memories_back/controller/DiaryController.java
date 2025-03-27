@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lsw.memories_back.common.dto.request.diary.PatchDiaryRequestDto;
 import com.lsw.memories_back.common.dto.request.diary.PostDiaryRequestDto;
+import com.lsw.memories_back.common.dto.request.diary.PostCommentRequestDto;
 import com.lsw.memories_back.common.dto.response.ResponseDto;
 import com.lsw.memories_back.common.dto.response.diary.GetDiaryResponseDto;
 import com.lsw.memories_back.common.dto.response.diary.GetEmpathyResponseDto;
@@ -88,6 +89,16 @@ public class DiaryController {
     @AuthenticationPrincipal String userId
   ) {
     ResponseEntity<ResponseDto> response = diaryService.putEmpathy(diaryNumber, userId);
+    return response;
+  }
+
+  @PostMapping("/{diaryNumber}/comment")
+  public ResponseEntity<ResponseDto> postComment(
+    @RequestBody @Valid PostCommentRequestDto requestBody,
+    @PathVariable("diaryNumber") Integer diaryNumber,  
+    @AuthenticationPrincipal String userId
+  ) {
+    ResponseEntity<ResponseDto> response = diaryService.postComment(requestBody, diaryNumber, userId);
     return response;
   }
 
