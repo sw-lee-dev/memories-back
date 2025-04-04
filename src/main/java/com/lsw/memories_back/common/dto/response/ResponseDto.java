@@ -58,4 +58,9 @@ public class ResponseDto {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
   }
 
+  public static ResponseEntity<ResponseDto> noExistBoard() {
+    ResponseDto body = new ResponseDto(ResponseCode.EXIST_USER, ResponseMessage.EXIST_USER);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+  }
+
 }
